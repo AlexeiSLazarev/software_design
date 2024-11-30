@@ -2,13 +2,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-// Интерфейс хранилища
+
 interface Storage {
     void save(String data) throws SQLException;
     List<String> getAll() throws SQLException;
 }
 
-// Реализация Storage с использованием базы данных
 class DatabaseStorage implements Storage {
     private final Connection connection;
 
@@ -17,7 +16,6 @@ class DatabaseStorage implements Storage {
         initializeDatabase();
     }
 
-    // Инициализация таблицы в базе данных
     private void initializeDatabase() throws SQLException {
         String createTableSQL = """
             CREATE TABLE IF NOT EXISTS storage (
@@ -30,7 +28,6 @@ class DatabaseStorage implements Storage {
         }
     }
 
-    // Сохранение строки в базу данных
     @Override
     public void save(String data) throws SQLException {
         String insertSQL = "INSERT INTO storage (data) VALUES (?);";
@@ -40,7 +37,6 @@ class DatabaseStorage implements Storage {
         }
     }
 
-    // Извлечение всех строк из базы данных
     @Override
     public List<String> getAll() throws SQLException {
         String selectSQL = "SELECT data FROM storage;";
@@ -55,22 +51,20 @@ class DatabaseStorage implements Storage {
     }
 }
 
-// Главный класс программы
+
 public class StorageDemo {
     public static void main(String[] args) {
-        String jdbcUrl = "jdbc:postgresql://localhost:5432/your_database"; // Замените на ваш URL базы данных
-        String username = "your_username"; // Замените на ваше имя пользователя
-        String password = "your_password"; // Замените на ваш пароль
+        String jdbcUrl = "jdbc:postgresql://localhost:5432/your_database"; 
+        String username = "username"; 
+        String password = "password"; 
 
         try (Connection connection = DriverManager.getConnection(jdbcUrl, username, password)) {
             Storage storage = new DatabaseStorage(connection);
 
-            // Сохранение данных
             storage.save("Hello, World!");
             storage.save("This is a test.");
             storage.save("Java JDBC Example.");
 
-            // Извлечение данных
             List<String> allData = storage.getAll();
             System.out.println("Сохраненные строки:");
             for (String data : allData) {
