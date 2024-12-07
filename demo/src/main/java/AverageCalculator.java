@@ -1,5 +1,3 @@
-package software.design;
-
 public class AverageCalculator {
     public double calculateAverage(int[] numbers){
 
