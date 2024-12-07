@@ -3,7 +3,7 @@ import java.util.List;
 
 public class GradeCalculator {
     public double calculateAverage(List<Integer> grades) {
-        // Проверка на null
+
         if (grades == null) {
             throw new IllegalArgumentException("Список оценок не может быть null");
         }
@@ -13,8 +13,6 @@ public class GradeCalculator {
         }
         
         double average = 0.0;
-
-        // Проверка корректности оценок
         for (Integer grade : grades) {
             if (grade == null) {
                 throw new IllegalArgumentException("Оценка не может быть null");
