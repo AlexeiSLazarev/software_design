@@ -1,10 +1,10 @@
 // 1. Итоговое значение счетчика неверно из-за того что переменная не является атомарной 
 // -> Оба потока сразу ее изменяют и изменения перекрываются.
-// Исправленный вариант с атомарной переменной
+// Исправленный вариант - с атомарной переменной.
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class RaceConditionExample {
+public class RaceCondition {
 
     private static AtomicInteger counter = new AtomicInteger(0);
 

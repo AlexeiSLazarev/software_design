@@ -2,7 +2,7 @@
 // Возникает взаимная зацикленность - оба в состоянии ожидания.
 // Решение: все потоки сохраняют один и тот же порядок lock.
 
-public class DeadlockExample {
+public class Deadlock {
 
     private static final Object lock1 = new Object();
     private static final Object lock2 = new Object();
